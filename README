@@ -2,7 +2,62 @@
 # friends.annotations
 ### A multi-modal set of annotations to characterize the Friends episodes (friends.stimuli movies) watched in the scanner by the Courtois-NeuroMod participants.
 
-The [Courtois project on Neural Modelling (Courtois NeuroMod)](https://www.cneuromod.ca/) is assembling an extensive dataset of individual human brain activity and behavioural data.
+The [Courtois project on Neural Modelling (Courtois NeuroMod)](https://www.cneuromod.ca/) is assembling an extensive dataset of human brain activity captured with fMRI in six individuals while they performed an extensive selection of controlled and naturalistic tasks. 
 
-Courtois NeuroMod data are [freely shared with the scientific community](https://docs.cneuromod.ca/en/latest/ACCESS.html) to advance research at the interface of neuroscience and artificial intelligence.
+For one of these tasks, participants watched seven seasons of the sitcom Friends, broken into half episodes, inside the scanner. The current repository includes various annotations that capture different aspects of the half-episodes shown to the Courtois-Neuromod participants. It includes the annotations themselves, as well as scripts used to generate them.
 
+
+The CNeuroMod data and their derivatives are freely shared with the scientific community](https://docs.cneuromod.ca/en/latest/ACCESS.html) under a [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/legalcode) that is under the ownership of the CNeuroMod team and the participants to advance research at the interface of neuroscience and artificial intelligence.
+
+The current annotation dataset contains / is based on copyrighted material and thus, those materials are not covered by the license listed above. The materials in question are shared only for the purpose of scientific research, and  this use case falls under Canada’s Fair Dealing policy on use of copyrighted materials. However,  the proper use of copyrighted materials may vary depending on countries and use cases. Please check each dataset carefully prior to use and acquire a legal copy if necessary. Scripts to regenerate stimuli files from raw commercial products can also be found in this repository.
+
+
+Repository Organization
+------------
+
+    ├── README.md          
+    ├── sourcedata             
+    │    └── friends.stimuli      <-- Friends half-episodes watched by participants           
+    │          └── s*/friends_s0*e*{a, b, c, d}.tsv      
+    ├── audio_tagging             <-- soundscape tags 
+    │    ├── friends_audiotag.json     
+    │    ├── s*/friends_s0*e*_audioannot.tsv    
+    │    └── code           
+    │         └── audio-annot     <-- submodule
+    ├── deepgaze                  <-- gaze predictions per frame (deepgaze_mr) 
+    │    ├── friends_deepgaze.json
+    │    ├── s*/friends_s0*e*_locmax_normalized_xy.npz 
+    │    ├── s*/friends_s0*e*_locmax_pixel_hw.npz     
+    │    ├── s*/friends_s0*e*_maxpeak_coord.tsv    
+    │    └── code      
+    │         └── run_deepgaze.py     
+    ├── face_tagging              <-- named characters face position on movie frames
+    │    ├── friends_facetags.json
+    │    ├── s*/friends_s0*e*_desc-clustermark_facetags.tsv    
+    │    └── code           
+    │         ├── doc  
+    │         └── clustermark     <-- submodule
+    ├── automated_transcription          <-- timestamped speech2text transcription identified per speaker
+    │    ├── friends_transcripts.json    
+    │    ├── s*/friends_s0*e*{a, b, c, d}_model-AA_desc-wSpeaker_transcript.json        
+    │    └── code           
+    │         ├── doc  
+    │         └── speech2text_AA.py  
+    ├── community_transcription          <-- edited fan-made dialog transcripts with scene annotations 
+    │    ├── readme.md    
+    │    └── s*/friends_s0*e*_ufs.txt       
+    ├── pyscene                   <-- automated scene segmentation based on luminosity with pyscene detect
+    │    ├── friends_pyscene.json    
+    │    ├── s*/friends_s0*e*_pyscene.tsv        
+    │    └── code           
+    │         └── launchPyscene.sh
+    ├── manual_scene              <-- manual scene segmentation based on script & story line 
+    │    ├── friends_manualseg.json      
+    │    ├── s*/friends_s0*e*_manualseg.tsv        
+    │    └── doc           
+    │         └── segmentation_manual.md     
+    └── wiki_summaries           <-- characters, seasons and episode summaries adapted from wikipedia 
+         ├── readme.md 
+         ├── friends_s0*_desc-episodes_wikipedia.yaml         
+         ├── friends_desc-characters_wikipedia.yaml
+         └── friends_desc-seasons_wikipedia.yaml           
